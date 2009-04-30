@@ -75,7 +75,7 @@ import java.util.EventObject;
  * 
  * @author Johan Andersson (johan.rejeep@gmail.com)
  */
-public class ActionController
+public abstract class ActionController
 {
   /**
    * The event that was fired. Controllers can via this variable get

@@ -4,7 +4,7 @@
  *
  * @author Johan Andersson (johan.rejeep@gmail.com)
  */
-public class ApplicationController extends ActionController
+public abstract class ApplicationController extends ActionController
 {
   /**
    * <p>If there's an event connected that is to be called by the
