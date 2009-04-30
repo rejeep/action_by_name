@@ -1,1 +1,3 @@
 Simple example of how to use ActionByName.
+
+Simply run ./run.sh (if you use javac compiler) in a terminal to compile and run.
