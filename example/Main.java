@@ -1,3 +1,7 @@
+import javax.swing.JFrame;
+import java.awt.BorderLayout;
+import javax.swing.JButton;
+
 /**
  * Main class.
  *
@@ -7,21 +11,21 @@ public class Main extends JFrame
 {
   public Main()
   {
-    setLayout( new BorderLayout() );
+    setLayout(new BorderLayout());
     
-    Controller controller = new Controller();
-    
-    JButton save = new JButton();
-    save.addActionListener( controller );
+    GameController gameController = new GameController();
+
+    JButton save = new JButton("Click here to save the Game!");
+    save.addActionListener(gameController);
     save.setName("save");
     add(save);
     
     pack();
-    setVisible( true );
-    setDefaultCloseOperation( EXIT_ON_CLOSE );
+    setVisible(true);
+    setDefaultCloseOperation(EXIT_ON_CLOSE);
   }
   
-  public static void main( String[] args )
+  public static void main(String[] args)
   {
     new Main();
   }
