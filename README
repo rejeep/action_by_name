@@ -1,1 +1,3 @@
 Inspired by Rails, these files provides a simple way to call your controller actions by just setting a name on them.
+
+Read javadoc comment for usage information.
