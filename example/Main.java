@@ -3,9 +3,10 @@ import java.util.Random;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
+
 /**
  * Main class.
- *
+ * 
  * @author Johan Andersson (johan.rejeep@gmail.com)
  */
 public class Main extends JFrame
@@ -13,7 +14,7 @@ public class Main extends JFrame
   public Main()
   {
     setLayout(new FlowLayout());
-    
+
     GameController gameController = new GameController();
 
     // Save button that show the default usage.
@@ -37,7 +38,7 @@ public class Main extends JFrame
     setVisible(true);
     setDefaultCloseOperation(EXIT_ON_CLOSE);
   }
-  
+
   public static void main(String[] args)
   {
     new Main();
