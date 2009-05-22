@@ -104,7 +104,9 @@ public abstract class ActionController
     // Try to call the action with the same name as the component.
     try
     {
+      callAction("beforeFilter");
       callAction();
+      callAction("afterFilter");
     }
     catch(NoSuchMethodException e)
     {
