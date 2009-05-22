@@ -7,6 +7,11 @@ import java.util.EventObject;
 
 /**
  * <p>
+ * Inspired by Ruby On Rails (http://www.rubyonrails.org), this class along with
+ * {@link ApplicationController ApplicationController}, provides a simple way to
+ * call controller actions by just setting a name on them.
+ * </p>
+ * <p>
  * This class handles all controller actions. All controllers should extend
  * ApplicationController, that in turn extend this class. This will result in
  * that all controllers will handle some events the same way.
