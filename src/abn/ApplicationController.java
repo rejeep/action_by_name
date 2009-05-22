@@ -1,8 +1,14 @@
 package abn;
 
 /**
+ * <p>
  * This is a controller class that all controllers, other than
  * {@link ActionController ActionController}, should extend.
+ * </p>
+ * <p>
+ * Put common functionality in <code>beforeFilter</code> and
+ * <code>afterFilter</code> to keep the code DRY.
+ * </p>
  * 
  * @author Johan Andersson (johan.rejeep@gmail.com)
  */
@@ -15,8 +21,7 @@ public abstract class ApplicationController extends ActionController
   {}
 
   /**
-   * This method is called before the actual action. Common functionality can be
-   * put in this method to keep the code DRY.
+   * This method is called before the actual action.
    */
   public void beforeFilter()
   {}

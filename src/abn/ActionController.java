@@ -8,8 +8,8 @@ import java.util.EventObject;
 /**
  * <p>
  * This class handles all controller actions. All controllers should extend
- * ApplicationController, that in turn extend this class. This means that all
- * controllers will handle events the same way.
+ * ApplicationController, that in turn extend this class. This will result in
+ * that all controllers will handle some events the same way.
  * </p>
  * <h4>Usage</h4>
  * <p>
@@ -19,7 +19,7 @@ import java.util.EventObject;
  * 
  * <pre>
  * JButton button = new JButton(&quot;Some button&quot;);
- * utton.addActionListener(controller);
+ * button.addActionListener(controller);
  * </pre>
  * <p>
  * Note that the event should <strong>always</strong> go to the controller.
@@ -37,8 +37,8 @@ import java.util.EventObject;
  * connected to the component, is the one with the same name as the component
  * name. This however, is only true, if there's a method in the controller with
  * that name, taking no arguments. So for the above example the
- * <code>action</code> method in the <code>controller</code> controller will be
- * called when <code>button</code> is clicked.
+ * <code>action</code> name method in the controller named
+ * <code>controller</code> will be called when <code>button</code> is clicked.
  * </p>
  * <p>
  * However. If there is no method named action in the controller. A method
@@ -49,13 +49,13 @@ import java.util.EventObject;
  * </p>
  * <p>
  * Before the action is called, a method called
- * {@link ApplicationController#beforeFilter beforeFilter} is called before and
- * a method called {@link ApplicationController#afterFilter afterFilter} is
- * called after. Read comments in {@link ApplicationController
- * ApplicationController} for more information.
+ * {@link ApplicationController#beforeFilter beforeFilter} is called. And after
+ * a method called {@link ApplicationController#afterFilter afterFilter}. Read
+ * comments in {@link ApplicationController ApplicationController} for more
+ * information.
  * </p>
  * <p>
- * Two variables are by default available in the controllers.
+ * Two variables are by default available in the sub-controllers.
  * <ul>
  * <li>event - Is the event that was fired.</li>
  * <li>name - Is the name of the component that the event was fired on.</li>
