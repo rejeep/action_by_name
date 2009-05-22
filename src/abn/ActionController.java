@@ -6,8 +6,6 @@ import java.util.EventObject;
 
 
 /**
- * TODO: The only real use of this class is for action listener. Fix that.
- * TODO: Fix so that it's not the setName method that is used, but instead setActionCommand.
  * <p>
  * This class handles all controller actions. All controllers should extend
  * ApplicationController, that in turn extend this class. This means that all
