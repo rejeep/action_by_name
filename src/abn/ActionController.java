@@ -69,20 +69,23 @@ import java.util.EventObject;
  * <p>
  * If you done that and it still doesn't work, make sure that this class
  * implements the listener class you want to use. Say for example that you want
- * to add a <code>ComponentListener</code> to your controller. Then this class
- * must implement <code>ComponentListener</code> and have all methods from that
- * interface. In this case:
- * </p>
- * <ul>
- * <li>void componentHidden(ComponentEvent e)</li>
- * <li>void componentMoved(ComponentEvent e)</li>
- * <li>void componentResized(ComponentEvent e)</li>
- * <li>void componentShown(ComponentEvent e)</li>
- * </ul>
+ * to add a <code>ActionListener</code> to your controller. Then this class must
+ * implement <code>ActionListener</code> and have all methods from that
+ * interface. In this case it's only <code>actionPerformed</code>.
  * <p>
- * And in each of these methods you should first set the event instance variable
- * to the event that is passed to the method. And then call
- * {@link ActionController#callActionByName callActionByName}.
+ * And in the method you should first set the event instance variable to the
+ * event that is passed to the method. And then call
+ * {@link ActionController#callActionByName callActionByName}.<br/> Example:
+ * 
+ * <pre>
+ * public void actionPerformed(ActionEvent e)
+ * {
+ *   this.event = e;
+ * 
+ *   callActionByName();
+ * }
+ * </pre>
+ * 
  * </p>
  * <p>
  * One more thing to check is if your controller is created or not. Because if
