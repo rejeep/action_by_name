@@ -9,17 +9,18 @@ import java.util.EventObject;
  * <p>
  * Inspired by Ruby On Rails (http://www.rubyonrails.org), this class along with
  * {@link ApplicationController ApplicationController}, provides a simple way to
- * call controller actions by just setting a name on them.
+ * call controller actions by just setting a name on components.
  * </p>
  * <p>
  * This class handles all controller actions. All controllers should extend
- * ApplicationController, that in turn extend this class. This will result in
- * that all controllers will handle some events the same way.
+ * {@link ApplicationController ApplicationController}, which in turn extend
+ * this class. This will result in that all controllers will handle some events
+ * the same way.
  * </p>
- * <h4>Usage</h4>
+ * <h1>Usage</h1>
  * <p>
- * If you want to connect an event to a <code>Component</code>, Say for example
- * a <code>JButton</code>, you add a listener as usual:
+ * If you want to connect a <code>Component</code> (say for example a
+ * <code>JButton</code>) event to a controller, you add a listener as usual:
  * </p>
  * 
  * <pre>
@@ -30,8 +31,9 @@ import java.util.EventObject;
  * Note that the event should <strong>always</strong> go to the controller.
  * </p>
  * <p>
- * After this there's one more thing to do. And that is to give the Component a
- * name with the {@link java.awt.Component#setName(String name) setName} method.
+ * After this there's one more thing to do. And that is to give the
+ * <code>Component</code> a name with the
+ * {@link java.awt.Component#setName(String name) setName} method.
  * </p>
  * 
  * <pre>
@@ -46,55 +48,41 @@ import java.util.EventObject;
  * <code>controller</code> will be called when <code>button</code> is clicked.
  * </p>
  * <p>
- * However. If there is no method named action in the controller. A method
- * defined in {@link ApplicationController#methodMissing ApplicationController}
- * called <code>methodMissing</code> is called. This is handy for dynamic action
- * calling. So in your controller, you can override this method to get some
- * other behavior.
+ * However. If there is no method named <code>action</code> in the controller. A
+ * "method missing" method ({@link ActionController#methodMissing methodMissing}
+ * ) is called. This is handy for dynamic action handling. So in your
+ * controller, you can override this method to get some other behavior.
  * </p>
  * <p>
- * Before the action is called, a method called
- * {@link ApplicationController#beforeFilter beforeFilter} is called. And after
- * a method called {@link ApplicationController#afterFilter afterFilter}. Read
- * comments in {@link ApplicationController ApplicationController} for more
- * information.
+ * Before an action is called, {@link ActionController#beforeFilter
+ * beforeFilter} is called. And after {@link ActionController#afterFilter
+ * afterFilter}. Read comments for resp. method for more information.
  * </p>
  * <p>
  * Two variables are by default available in the sub-controllers.
  * <ul>
- * <li>event - Is the event that was fired.</li>
- * <li>name - Is the name of the component that the event was fired on.</li>
+ * <li>event - The event that was fired.</li>
+ * <li>name - The name of the component that the event was fired on.</li>
  * </ul>
  * </p>
- * <h4>Troubleshooting</h4>
+ * <h1>Troubleshooting</h1>
  * <p>
  * If the above does not work. Start by reading the comments in
  * {@link ApplicationController ApplicationController}.
  * </p>
  * <p>
- * If you done that and it still doesn't work, make sure that this class
- * implements the listener class you want to use. Say for example that you want
- * to add a <code>ActionListener</code> to your controller. Then this class must
- * implement <code>ActionListener</code> and have all methods from that
- * interface. In this case it's only <code>actionPerformed</code>.
- * <p>
- * And in the method you should first set the event instance variable to the
- * event that is passed to the method. And then call
- * {@link ActionController#callActionByName callActionByName}.<br/> Example:
- * 
- * <pre>
- * public void actionPerformed(ActionEvent e)
- * {
- *   this.event = e;
- * 
- *   callActionByName();
- * }
- * </pre>
- * 
+ * If you done that and it still doesn't work, make sure that the application
+ * controller implements the listener class you want to use. Say for example
+ * that you want to add a <code>ActionListener</code> to your controller. Then
+ * {@link ApplicationController ApplicationController} must implement
+ * <code>ActionListener</code> and override all methods in that interface. In
+ * this case it's only <code>actionPerformed</code>.
  * </p>
+ * 
  * <p>
- * One more thing to check is if your controller is created or not. Because if
- * you send null to <code>addActionListener</code>, you don't get any errors.
+ * One more thing to check is if your controller object is created or not.
+ * Because if you send null to <code>addActionListener</code>, you don't get any
+ * errors.
  * </p>
  * 
  * @author Johan Andersson (johan.rejeep@gmail.com)
@@ -111,8 +99,6 @@ public abstract class ActionController
    * The name of the component that the event was fired on.
    */
   protected String name;
-
-  // Event actions here...
 
   /**
    * Calls the method on this class whose name is same as <code>name</code>.
@@ -165,19 +151,36 @@ public abstract class ActionController
     }
     catch(NoSuchMethodException e)
     {
-      // There is no such method, so we "rescue call" methodMissing.
-      try
-      {
-        callAction("methodMissing");
-      }
-      catch(Exception ex)
-      {
-        System.err.println("methodMissing must be defined.");
-      }
+      methodMissing();
+    }
+    catch(NullPointerException e)
+    {
+      methodMissing();
     }
     catch(Exception e)
     {
       // Some other error occurred.
+      e.printStackTrace();
     }
   }
+
+  /**
+   * This method is called after the actual action.
+   */
+  public void afterFilter()
+  {}
+
+  /**
+   * This method is called before the actual action.
+   */
+  public void beforeFilter()
+  {}
+
+  /**
+   * If there's an event connected that is to be called by the component name
+   * and there's no method with the same name, this method is called. Override
+   * it in your controllers.
+   */
+  public void methodMissing()
+  {}
 }
