@@ -136,7 +136,7 @@ public abstract class ActionController
    * name. If no such method exists, {@link ApplicationController#methodMissing
    * methodMissing} is called.
    */
-  private void callActionByName()
+  protected void callActionByName()
   {
     // The action that is to be called is the method with the same
     // name as the name for the component that triggered the event.
